@@ -3,17 +3,655 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyApp</title>
-</head>
-<body>
-    <h1>Welcome to John Lorio Page</h1>
-    <div>  
-    <ul>
-        <li><a href="snake.html">snake</a></li>
-        <li><a href="TicTacToe.html">TicTacToe</a></li>
-    </ul>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+    <script>
+        function handlePrint() {
+            window.print();
+        }
+    </script>
+
+    <style>
+  /* Tested colors */
+:root {
+    --accent-color: #5695cd;
+    --light-accent-color: #8db0d6; /* lighten($accentColor, 50%) */
+    --progress-background: #d1d9e1;
+}
+
+/* Google Fonts */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url('https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFVZ0b.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    src: local('Roboto'), local('Roboto-Regular'), url('https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+}
+
+@page {
+    size: A4;
+}
+
+body {
+    -webkit-print-color-adjust: exact; /* For Safari */
+    print-color-adjust: exact; /* For other browsers */
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    margin: 0; /* Added to ensure no default margin issues */
+}
+
+.btn-print {
+    z-index: 1;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.resume {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13.0736px;
+    font-weight: 400;
+    line-height: 1.5;
+    min-height: 1090.41px;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+.resume h1 {
+    font-size: 2.86em;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.resume h2 {
+    font-size: 1.43em;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+.resume p {
+    margin-bottom: 1em;
+}
+
+.resume p:last-child {
+    margin-bottom: 0;
+}
+
+.resume ul {
+    padding-left: 20px;
+}
+
+.resume__header,
+.resume__section {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95em;
+}
+
+.resume__header {
+    padding: 6em 4em 0;
+}
+
+.resume__section {
+    margin-bottom: 4em;
+}
+
+.resume__section:last-child {
+    padding-bottom: 0;
+}
+
+.resume__section-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.43em;
+}
+
+.resume__section-title > i {
+    margin-right: 0.63em;
+    font-size: 1.14em;
+    background-color: var(--accent-color);
+    color: white;
+    border: 0.25em solid var(--light-accent-color);
+    border-radius: 50%;
+    width: 2.51em;
+    height: 2.51em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6;
+}
+
+.resume__section-title > h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.resume__columns {
+    overflow: hidden; /* Clear floats */
+    padding: 4em;
+    padding-top: 0;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+.resume__main {
+    float: left;
+    width: 70%;
+    padding-right: 6em;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+.resume__side {
+    float: left;
+    width: 30%;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+.other-info p > b {
+    color: #555;
+}
+
+.info-item {
+    margin-bottom: 0.2em;
+    font-weight: 300;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    display: inline-block;
+    padding-right: 0.63em;
+    font-size: 1.14em;
+    min-width: 2.19em;
+    text-align: center;
+}
+
+.info-label i {
+    color: var(--accent-color);
+}
+
+.xp-item {
+    margin-bottom: 4em;
+}
+
+.xp-item:last-child {
+    margin-bottom: 0;
+}
+
+.xp-job {
+    font-size: 1.14em;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.xp-job span,
+.xp-job small {
+    font-weight: 400;
+}
+
+.xp-job small {
+    font-size: 0.9em;
+}
+
+.xp-date {
+    font-size: 0.8em;
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+    color: var(--accent-color);
+}
+
+.extra {
+    margin-bottom: 2em;
+}
+
+.extra:last-child {
+    margin-bottom: 0;
+}
+
+.extra-info small {
+    color: #666;
+    display: inline-block;
+    font-size: 0.7em;
+}
+
+.extra-details {
+    margin-top: 0.5em;
+    background-color: var(--progress-background);
+    width: 100%;
+    height: 5px;
+    position: relative;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+.extra-details__progress {
+    background-color: var(--accent-color);
+    height: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 6px;
+}
+
+.lang-item {
+    margin-bottom: 2em;
+}
+
+.lang-item:last-child {
+    margin-bottom: 0;
+}
+
+.lang-label {
+    width: 8em;
+}
+
+@media print {
+    body {
+        min-width: initial !important;
+    }
+
+    .btn-print {
+        display: none;
+    }
+}
+    </style>
+</head>
+
+<body class="A4">
+    <div class="sheet">
+        <button class="btn btn-print btn-sm btn-light" onclick="handlePrint()">
+            <i class="fa fa-print"></i> Print
+        </button>
+        <div class="two-column resume">
+            <section class="resume__section resume__header">
+                <div class="resume__content">
+                    <h1>John Lorio</h1>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa fa-location-arrow"></i></span>
+                        <span class="info-text">Pio Del Pilar, Makati City, 1230</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa fa-envelope"></i></span>
+                        <span class="info-text">lorioj18@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa fa-phone"></i></span>
+                        <span class="info-text">+639105880275</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
+                        <span class="info-text"><a href="https://www.linkedin.com/in/john-lorio-a28160177/">LinkedIn</a></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa fa-code" aria-hidden="true"></i></span>
+                        <span class="info-text"><a href="https://leetcode.com/u/lorioj/">LeetCode</a></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa fa-github" aria-hidden="true"></i></span>
+                        <span class="info-text"><a href="https://github.com/lorioj">GitHub</a></span>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <div class="resume__columns">
+                <div class="resume__main">
+                    <!-- <section class="resume__section resume__summary">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-pencil-square-o"></i>
+                                <h2>Professional Summary</h2>
+                            </div>
+                            <div class="other">
+                                <div class="other-info">
+                                    <p>PHP & JavaScript developer + DevOps Enthusiast with a decade of success leading teams in delivering appropriate technology solutions for desktop and mobile products.</p>
+                                    <p>Comprehensive knowledge of enterprise architecture, agile methodologies, remote work, cloud services and web-based applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section> -->
+                  
+                    <section class="resume__section resume__experience">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-briefcase"></i>
+                                <h2>Employment History</h2>
+                            </div>
+
+                            <div class="xp-item">
+                                <div class="xp-job">
+                                    Software Engineer<span> @Accenture Inc</span><br>
+                                    <small>Mandaluyong</small>
+                                </div>
+                                <div class="xp-date">Nov. 2022 – current</div>
+                                <div class="xp-detail">
+                                    <ul>
+                                        <li>Project Name: Phoenix AO(Tigital) - Banking industries providing a wide range of financial services.</li>
+                                        <li>Solving and prioritizing incident tickets. using ticketing systems (e.g., BMC Helix, Jira) <br>
+                                        to track and document issues, coordinate with technical teams, <br>
+                                        and provide timely updates to stakeholders.</li>
+                                        <li>Perform Workorder ticket and completion of work orders. <br>
+                                        Ensure alignment with service level agreements (SLAs) and track progress <br>
+                                        to ensure that tasks are executed efficiently and within stipulated deadlines.</li>
+                                        <li>Providing tickets reports to identify root causes and implement corrective actions. <br>
+                                        Collaborate with cross-functional teams to resolve complex issues and prevent recurrence.<br>
+                                        <li>Mentorship and Training: Provide guidance and support to junior team members, <br>
+                                        including training on tickets procedures, troubleshooting techniques, programmming <br>
+                                        and best practices. Foster a collaborative environment to enhance team skills and performance.</li>
+                                        <li>Code Refactoring: Analyzed and updated legacy Java 8 code to comply with Java 17 <br>
+                                        syntax and best practices. optimized performance, <br>
+                                        and incorporated new Java 17 features for improved functionality and efficiency.
+                                        </li>
+                                        <li>Design, build web sites using JSF, Primefaces 11, Java</li>
+                                        <li>Involved in Change The Bank projects such as:</li>
+                                        <ul>
+                                            <li>eZKO Visualization</li>
+                                            <ul>
+                                                <li>Programmer Frontend and Backend.</li>
+                                                <li>Development of application modules and implementation.</li>
+                                                <li>Technology: Java, Jakarta, Maven, JSF, Primefaces 11, Wildfly Server</li>
+                                            </ul>
+                                        
+                                        </ul>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="xp-item">
+                                <div class="xp-job">
+                                    Software Design Engineer <span> @Fireclay Corporation</span><br>
+                                    <small>Makati City</small>
+                                </div>
+                                <div class="xp-date">March 2021 – October 2022</div>
+                                <div class="xp-detail">
+                                    <ul>
+                                        <li>Analyzed requirements and designed, developed, and implemented 
+                                            applications.</li>
+                                        <li>Reworked applications to meet individual customer demands and changing
+                                            market trends.</li>
+                                        <li>Supported programming changes during quality assurance, user acceptance 
+                                            testing, and post implementation.</li>
+                                        <li>Worked as a productive and positive team member to design, code, test, 
+                                            report, and debug applications.</li>
+                                            
+                                        <li>Build or maintain web sites</li>
+                                        <li>Provide backup and maintenance of Linux servers</li>
+                                        <li>Provide documentation for existent and new applications</li>
+                                        <li>Involved in projects such as the following:
+                                            <ul>
+                                                <li>
+                                                    Crane Scale System (Automation System) <span class="xp-date"> March 2021 – October 2022</span>
+                                                    <ul>
+                                                        <li>Main programmer (Frontend and Backend).</li>
+                                                        <li>Development of windows application with hardware implementation.</li>
+                                                        <li>Technology: C#, WPF/.NET, MySQL and SendGrid</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    Poultrymax Shift Monitoring System <span class="xp-date">August 2021 – October 2022</span>
+                                                    <ul>
+                                                        <li>Programmer Support (Frontend and Backend)</li> April 2022 – June 2022</span>
+                                                        <li>Development of windows application with hardware implementation.</li>
+                                                        <li>Technology: Java 11, Vaadin 14(Frontend), Spring Framework (Backend), MySQL, C#, WPF/.NET, MySQL Server and REST API</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                            <ul>
+                                                <li>
+                                                    Moderno Inventory <span class="xp-date">June  2022 – August 2022</span>
+                                                    <ul>
+                                                        <li>Programmer Support (Frontend and Backend)</li>
+                                                        <li>Technology: java 8, Vaadin 8Frontend), Spring Framework (Backend) and MySQL</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                            <ul>
+                                                <li>
+                                                    Bili Tayo (Point of Sale) <span class="xp-date">August 2022 – September 2022</span>
+                                                    <ul>
+                                                        <li>Programmer Support (Frontend and Backend)</li>  
+                                                        <li>Technology: java 11, Vaadin 14(Frontend), Spring Framework (Backend), RabbitMQ (Messaging) and REST API</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                        </li>
+                                        
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="xp-item">
+                                <div class="xp-job">
+                                    Web Developer <span> @Central Bicol State University of Agriculture</span><br>
+                                    <small>Camarines Sur</small>
+                                </div>
+                                <div class="xp-date">August 1, 2020 – September 30, 2020</div>
+                                <div class="xp-detail">
+                                    <ul>
+                                        <li>Assistant in Virtual Learning Portal System of the school.</li>
+                                        <li>Encoding Teacher and Student Data of excel then converting into CSV fiel and import into database.</li>
+                                        <li>Install windows, Microsoft Office 2019 and other software.</li>
+                                        <li>Registering employees and students to University Internet.</li>
+                                        <li>Troubleshooting and Assemble Disassemble Computer.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="resume__section resume__summary">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-graduation-cap"></i>
+                                <h2>Education</h2>
+                            </div>
+                            <div class="other">
+                                <div class="other-info">
+                                    <p>Cetral Bicol State University of Agriculture
+                                        Bachelor of Science in Information Technology
+                                        Sipocot Campus </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="resume__side">
+                    <section class="resume__section resume__skills">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-align-center"></i>
+                                <h2>Qualification</h2>
+                            </div>
+                            <div class="resume__text">
+                                <div class="extra">
+                                    
+                                    <div class="extra-info">
+                                        <strong>Programming Languages</strong><br>
+                                        <small style="font-weight: 600;">JAVA (Spring, Spring Boot)</small><br>
+                                        <small style="font-weight: 600;">Maven, Hibernate and Vaadin)</small><br>
+                                        <small style="font-weight: 600;">C# (WPF, Windows Form), C++</small><br><br>
+                                    </div>
+                                    <div class="extra-info">
+                                        <strong>Databases</strong><br>
+                                        <small style="font-weight: 600;">MYSQL, SQLite, Exasol</small><br><br>
+                                    </div>
+
+                                    <div class="extra-info">
+                                        <small style="font-weight: 600;">Have knowledge in Java Enterprise Edition and </small><br>
+                                        <small style="font-weight: 600;">Have knowledge in C# WPF.</small><br>
+                                        <small style="font-weight: 600;">Have knowledge in HTML, Javascript and CSS.</small><br>
+                                        <small style="font-weight: 600;">WebService such as REST/JSON API.</small><br>
+                                        <small style="font-weight: 600;">Have experience in using version control tools like </small><br>
+                                        <small style="font-weight: 600;">GitLab, Bitbucket, GIT, Sourcetree, and Github and other tools</small><br>
+                                        <small style="font-weight: 600;">such as IntelliJ, Eclipse IDE, Jaspersoft Studio, WinSCP,</small><br>
+                                        <small style="font-weight: 600;">Visual Studio, Putty and DBeave</small><br>
+                                        <small style="font-weight: 600;">Project management experience.</small><br>
+                                        <small style="font-weight: 600;">Proficient in Microsoft Word, Microsoft Powerpoint,</small><br>
+                                        <small style="font-weight: 600;">Microsoft Excel.</small><br>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section class="resume__section resume__skills">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-certificate"></i>
+                                <h2>Licences & Certification</h2>
+                            </div>
+                            <div class="resume__text">
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        <strong>Spring Certified Professional 2024[v2]</strong><br>
+                                        <span style="font-weight: 500">Issued by Broadcom Software</span><br>
+                                        <span style="font-weight: 500">Issued Aug 2024</span><br>
+                                        <span style="font-weight: 500">Credential ID BDCM01339329</span><br>
+                                        <span style="font-weight: 500"><a href="https://cp.certmetrics.com/vmware/en/public/verify/credential/12af3d067a554dc3afa85ec768022422">Show credential</a></span><br>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <br><br>
+                            <div class="resume__text">
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        <strong>Oracle Certified Professional: Java SE 11 Developer</strong><br>
+                                        <span style="font-weight: 500">Issued by Oracle</span><br>
+                                        <span style="font-weight: 500">Issued Aug 2023</span><br>
+                                        <span style="font-weight: 500">Credential ID 100087229OCPJSE11</span><br>
+                                        <span style="font-weight: 500"><a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=DB34A3B821802DF5DC21B3321B886E94ED1790BFBDB5F26F12808D5FF90ADB5E">Show credential</a></span><br>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </section>
+
+                    <!-- <section class="resume__section resume__skills">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-align-center"></i>
+                                <h2>Skills</h2>
+                            </div>
+                            <div class="resume__text">
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        Java<br>
+                                        <small>Java 8, 11, 17</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:90%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        JavaScript<br>
+                                        <small>React</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:30%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        HTML<br>
+                                        <small>HTML5</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:100%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        CSS<br>
+                                        <small>Sass</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:40%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        DevOps<br>
+                                        <small>· Shell · CI/CD</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:50%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        Databases<br>
+                                        <small>MySQL · Exasol · MySQLServer</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:80%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="extra">
+                                    <div class="extra-info">
+                                        Operating Systems<br>
+                                        <small><i class="fa fa-linux"></i> GNU/Linux · <i class="fa fa-windows"></i> Windows</small>
+                                    </div>
+                                    <div class="extra-details">
+                                        <div class="extra-details__progress" style="width:90%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section> -->
+                    <section class="resume__section resume__languages">
+                        <div class="resume__content">
+                            <div class="resume__section-title">
+                                <i class="fa fa-globe"></i>
+                                <h2>Languages</h2>
+                            </div>
+                         
+                            <div class="extra">
+                                <div class="extra-info">English, Tagalog, Bicol</div>
+                                
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
-  
 </body>
+
 </html>
